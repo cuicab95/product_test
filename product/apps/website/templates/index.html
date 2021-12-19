@@ -3,8 +3,46 @@
  {% block extra-css %}
  {% endblock extra-css %}
 {% block container %}
-    HOLA A TODOS
+    <div class="row" style="padding: 40px" id="store" v-cloak>
+            <h4>{% trans 'Listado de pedidos' %}</h4>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">{% trans 'Ciente' %}</th>
+                <th scope="col">{% trans 'Tipo' %}</th>
+                <th scope="col">{% trans 'Fecha del pedido' %}</th>
+                <th scope="col">{% trans 'Fecha de surtido' %}</th>
+                <th scope="col">{% trans '¿Urge?' %}</th>
+                <th scope="col">{% trans 'Total' %}</th>
+                <th scope="col">{% trans 'Ver detalle' %}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="item in orders">
+                <th scope="row">[[item.id]]</th>
+                <td>[[item.customer.first_name]] [[item.customer.last_name]]</td>
+                <td>
+                   <label v-if="item.type==='CD'">{% trans 'Centro de distribución' %}</label>
+                   <label v-if="item.type==='SU'">{% trans 'Sucursal' %}</label>
+                   <label v-if="item.type==='EA'">{% trans 'Empresa asociada' %}</label>
+                </td>
+                <td>[[item.timestamp]]</td>
+                <td>[[item.assortment_date]]</td>
+                <td>
+                    <span class="badge badge-pill badge-warning" v-if="item.is_urgent">{% trans 'SI' %}</span>
+                    <span class="badge badge-pill badge-success" v-else>{% trans 'NO' %}</span>
+                </td>
+                <td>$[[item.total]]</td>
+                <td><a :href="'/order/'+item.id + '/detail/'">Ver</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 {% endblock container %}
 {% block extra-js %}
-
+    <script>
+        _orderIdSelected = null;
+    </script>
+    <script src="{% static 'dist/js/store.js' %}?vid={{ vid }}"></script>
 {% endblock extra-js %}

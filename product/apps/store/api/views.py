@@ -23,10 +23,13 @@ class CreateOrderView(APIView):
         try:
             kwargs = {}
             if serializer.is_valid():
+                order_id = serializer.validated_data.get('id', None)
                 is_urgent = serializer.validated_data.get('is_urgent', None)
                 order_type = serializer.validated_data.get('order_type', None)
                 customer_type = serializer.validated_data.get('customer_type', None)
                 is_assortment = serializer.validated_data.get('is_assortment', None)
+                if order_id:
+                    kwargs['id'] = order_id
                 if is_urgent:
                     kwargs['is_urgent'] = is_urgent
                 if order_type:

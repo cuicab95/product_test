@@ -1,18 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
-import Loading from 'vue-loading-overlay';
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.use(Vuex)
 Vue.prototype.$axios = axios
-
-Vue.use(Loading, {
-  // props
-      color: 'blue'
-},{
-  // slots
-});
 
 Vue.filter("formatPercentage", function (value){
     if (!value) {
@@ -48,7 +40,7 @@ axios.defaults.headers.common['X-CSRFToken'] = getCookie('csrftoken');
 let VueParent = Vue.extend({
     delimiters: ['[[', ']]'],
     components:{
-        Loading
+
     }
 });
 

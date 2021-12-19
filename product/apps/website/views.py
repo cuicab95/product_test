@@ -11,3 +11,11 @@ class IndexView(LoginRequiredMixin, View):
     def get(self, request):
         ctx = {}
         return render(request, self.template_name, ctx)
+
+
+class OrderDetailView(LoginRequiredMixin, View):
+    template_name = "order_detail.html"
+
+    def get(self, request, order_id):
+        ctx = {'order_id': order_id}
+        return render(request, self.template_name, ctx)

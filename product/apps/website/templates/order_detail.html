@@ -1,0 +1,93 @@
+{% extends 'base_admin.html' %}
+{% load i18n static %}
+{% block extra-css %}
+{% endblock extra-css %}
+{% block container %}
+    <div id="store" v-cloak style="padding: 40px">
+        <div class="row">
+            <h4>{% trans 'Información general' %}</h4>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <img :src="[[orderData.customer.photo]]" alt="" width="200px">
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <label><strong>{% trans 'Cliente' %}:</strong> [[orderData.customer.first_name]] [[orderData.customer.last_name]]</label>
+                </div>
+                <div class="row">
+                    <label><strong>{% trans 'Dirección' %}:</strong> [[orderData.customer.address]]</label>
+                </div>
+                <div class="row">
+                    <strong>{% trans 'Tipo de pedido' %}: </strong>
+                    <label v-if="orderData.type==='CD'">{% trans 'Centro de distribución' %}</label>
+                    <label v-if="orderData.type==='SU'">{% trans 'Sucursal' %}</label>
+                    <label v-if="orderData.type==='EA'">{% trans 'Empresa asociada' %}</label>
+                </div>
+                <div class="row" v-if="orderData.type==='CD'">
+                    <label><strong>{% trans 'Almacén' %}: </strong>[[orderData.custom_data.stock]]</label>
+                </div>
+                <div class="row" v-if="orderData.type==='SU'">
+                    <label><strong>{% trans 'Referencia' %}: </strong>[[orderData.custom_data.reference]]</label>
+                    <label><strong>{% trans 'Código de sucursal' %}: </strong>[[orderData.custom_data.num_branch_office]]</label>
+                </div>
+                <div class="row" v-if="orderData.type==='EA'">
+                    <label><strong>{% trans 'Referencia' %}: </strong>[[orderData.custom_data.reference]]</label>
+                    <label><strong>{% trans 'Código de socio' %}: </strong>[[orderData.custom_data.code_partner]]</label>
+                </div>
+                <div class="row">
+                    <label><strong>{% trans 'Fecha del pedido' %}: </strong>[[orderData.timestamp]]</label>
+                </div>
+                <div class="row">
+                    <label><strong>{% trans 'Fecha de surtido' %}: </strong>[[orderData.assortment_date]]</label>
+                </div>
+                <div class="row">
+                    <label><strong>{% trans 'Total' %}: </strong>$[[orderData.total]]</label>
+                </div>
+                <div class="row">
+                    <label> <strong>{% trans '¿Urgente?' %}:</strong>
+                        <span class="badge badge-pill badge-warning" v-if="orderData.is_urgent">{% trans 'SI' %}</span>
+                        <span class="badge badge-pill badge-success" v-else>{% trans 'NO' %}</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h4>{% trans 'Detalle del pedido' %}</h4>
+        </div>
+        <div class="row">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">{% trans 'Producto' %}</th>
+                    <th scope="col">{% trans 'Descripción' %}</th>
+                    <th scope="col">{% trans 'Proveedor' %}</th>
+                    <th scope="col">{% trans 'Precio' %}</th>
+                    <th scope="col">{% trans 'Cantidad' %}</th>
+                    <th scope="col">{% trans 'Total' %}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="item in orderData.detail">
+                    <td>[[item.product_provider.product.name]]</td>
+                    <td>[[item.product_provider.product.description]]</td>
+                    <td>[[item.product_provider.provider.name]]</td>
+                    <td>[[item.sale_price]]</td>
+                    <td>[[item.quantity]]</td>
+                    <td>[[item.total]]</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    <div class="row">
+        <a href="{% url 'website:index' %}" class="btn btn-secondary">{% trans 'Regresar' %}</a>
+    </div>
+    </div>
+
+{% endblock container %}
+{% block extra-js %}
+    <script>
+        _orderIdSelected = {{ order_id }};
+    </script>
+    <script src="{% static 'dist/js/store.js' %}?vid={{ vid }}"></script>
+{% endblock extra-js %}

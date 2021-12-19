@@ -18,7 +18,7 @@ class Customer(models.Model):
     def image_path(self, filename):
         extension = os.path.splitext(filename)[1][1:]
         file_name = os.path.splitext(filename)[0]
-        url = "media/customer/file/%s.%s" % (slugify(str(file_name)), extension)
+        url = "customer/file/%s.%s" % (slugify(str(file_name)), extension)
         return url
 
     first_name = models.CharField(max_length=100, verbose_name=_("Nombre"))
@@ -109,6 +109,11 @@ class OrderDetail(models.Model):
 
     def __str__(self):
         return f"{self.order}-{self.product_provider}"
+
+    @property
+    def total(self):
+        total = self.sale_price * self.quantity
+        return f'{total:,}'
 
     class Meta:
         verbose_name = _("Detalle de pedido")
