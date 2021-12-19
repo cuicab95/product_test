@@ -16,6 +16,8 @@ Including another URLconf
 from django.urls import path, include
 from django.contrib import admin
 from product.apps.apidoc.config import schema_view
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,3 +27,7 @@ urlpatterns = [
     path('store/', include("product.apps.store.urls")),
     path('accounts/', include('allauth.urls')),
 ]
+
+if settings.DEBUG:  # Adding statics only if debug = True
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

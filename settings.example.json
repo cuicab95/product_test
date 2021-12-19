@@ -1,0 +1,37 @@
+{
+  "TIME_ZONE": "America/Merida",
+  "DB": {
+    "HOST": "localhost",
+    "NAME": "product",
+    "USER": "admin",
+    "PASSWORD": "admin",
+    "PORT": "5432"
+  },
+  "USE_HTTPS": false,
+  "SECURITY": {
+    "SECRET_KEY": "qdfgfiqli#scqqo$sy8+r@hs9mekng331=6g456h+qq(%xrjv!",
+    "DAYS_TO_ACTIVATE_ACCOUNT": 3,
+    "LOGIN_REDIRECT_URL": "/",
+    "ALLOWED_HOSTS": [
+      "127.0.0.1",
+      "localhost",
+      "*"
+    ]
+  },
+  "DEBUG": true,
+  "URL_SERVER": "http://localhost:8000",
+  "LOGGING": {
+    "DEBUG_FILE": "debug.log",
+    "TRACEBACK_FILE": "error.log"
+  },
+  "AMAZON": {
+    "AWS_ACCESS_KEY_ID": "sdoihioushdih",
+    "AWS_SECRET_ACCESS_KEY": "sdlkfkñjsd//ebU",
+    "S3": {
+      "USE_S3": false,
+      "AWS_STORAGE_BUCKET_NAME": "df",
+      "AWS_S3_CUSTOM_DOMAIN": "df.s3.df.com",
+      "MEDIAFILES_LOCATION": "media"
+    }
+  }
+}
