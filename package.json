@@ -23,6 +23,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "bootstrap-vue": "^2.0.0-rc.11",
+    "fontawesome-4.7": "^4.7.0",
     "lodash": "^4.17.11",
     "vue": "2.5.16",
     "vue-axios": "^2.1.4",

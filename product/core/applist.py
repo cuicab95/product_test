@@ -19,12 +19,15 @@ __AFTER_DJANGO_APPS = (
 
 __OWN_APPS = (
     'product.apps.store',
+    'product.apps.website',
 )
 
 __THIRD_PARTY_APPS = (
     'rest_framework',
     'drf_yasg',
     'django_filters',
+    'allauth',
+    'allauth.account',
 )
 
 INSTALLED_APPS = __BEFORE_DJANGO_APPS + __DJANGO_APPS + __AFTER_DJANGO_APPS + __OWN_APPS + __THIRD_PARTY_APPS
