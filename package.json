@@ -1,0 +1,33 @@
+{
+  "name": "product",
+  "version": "1.0.0",
+  "description": "product",
+  "main": "index.js",
+  "scripts": {
+    "dist": "./node_modules/.bin/webpack --mode=production",
+    "dev": "./node_modules/.bin/webpack --mode=development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/grupohiuman/hologram/src/master/"
+  },
+  "devDependencies": {
+    "css-loader": "^1.0.1",
+    "html-loader": "0.5.5",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  },
+  "author": "Carlos Uicab",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "bootstrap-vue": "^2.0.0-rc.11",
+    "lodash": "^4.17.11",
+    "vue": "2.5.16",
+    "vue-axios": "^2.1.4",
+    "vue-loading-overlay": "^4.0.4",
+    "vue-moment": "^4.0.0",
+    "vuex": "3.0.1"
+  }
+}
