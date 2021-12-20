@@ -59,7 +59,7 @@ class CustomerTest(TestCase):
         }
 
     def test_order_route(self):
-        response = self.client_stub.get('/store/api/v1/create-order/')
+        response = self.client_stub.get(reverse('store:api:create-order'))
         self.assertEquals(response.status_code, 200)
 
     def test_valid_new_order_route(self):
