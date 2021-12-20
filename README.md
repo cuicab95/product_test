@@ -13,3 +13,5 @@
 6- Instalar librerías `npm install` y `npm run dev` para compilar los js.
 
 7- Correr el proyecto `python manage.py runserver`
+
+8- Crear usuario para iniciar sesión `python manage.py createsuperuser`
