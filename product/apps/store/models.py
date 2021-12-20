@@ -52,7 +52,7 @@ class Provider(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=100, verbose_name=_("Nombre"))
-    code = models.CharField(max_length=12, verbose_name=_("Código"))
+    code = models.CharField(max_length=12, verbose_name=_("Código"), unique=True)
     description = models.TextField(verbose_name=_("Descripción"))
     timestamp = models.DateTimeField(auto_now_add=True, verbose_name=_("Fecha de creación"))
 
